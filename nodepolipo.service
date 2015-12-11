@@ -1,0 +1,19 @@
+[Unit]
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/forever /home/luke/code/polipoMgt/app.js
+ExecReload=/usr/bin/forever restart /home/luke/code/polipoMgt/app.js
+ExecStop=/usr/bin/forever stop /home/luke/code/polipoMgt/app.js
+#Type=forking
+Restart=always
+StandardOutput=syslog
+TimeoutSec=90
+SyslogIdentifier=nodepolipo
+User=root
+Group=root
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+
+[Install]
+WantedBy=multi-user.target
